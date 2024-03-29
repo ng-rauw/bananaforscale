@@ -1,7 +1,11 @@
+"use client";
 import Link from "next/link";
 import BananaIcon from "@/components/icons/Banana";
+import { usePathname } from "next/navigation";
+import HeaderLink from "@/components/HeaderLink";
 
 export default function Header() {
+  const currentPath = usePathname();
   return (
     <nav className="flex w-full gap-2 bg-yellow-400 p-4 text-black">
       <Link href="/" className="mr-auto flex flex-row items-center">
@@ -10,18 +14,21 @@ export default function Header() {
         </span>
         <h1 className="flex h-8 items-center text-xl">Banana for scale</h1>
       </Link>
-      <Link href="/height" className="rounded border-2 border-black p-2">
+      <HeaderLink url="/height" active={currentPath === "/height"}>
         <span>Height</span>
-      </Link>
-      <Link href="/weight" className="rounded border-2 border-black p-2">
+      </HeaderLink>
+      <HeaderLink url="/weight" active={currentPath === "/weight"}>
         <span>Weight</span>
-      </Link>
-      <Link href="/distance" className="rounded border-2 border-black p-2">
+      </HeaderLink>
+      <HeaderLink url="/distance" active={currentPath === "/distance"}>
         <span>Distance</span>
-      </Link>
-      <Link href="/time" className="rounded border-2 border-black p-2">
+      </HeaderLink>
+      <HeaderLink url="/time" active={currentPath === "/time"}>
         <span>Time</span>
-      </Link>
+      </HeaderLink>
+      <HeaderLink url="/currency" active={currentPath === "/currency"}>
+        <span>Currency</span>
+      </HeaderLink>
     </nav>
   );
 }
