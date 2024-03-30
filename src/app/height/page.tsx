@@ -1,7 +1,9 @@
+import BananaMeasure from "@/app/height/components/BananaMeasure";
+
 export default function Height() {
-    return (
-        <>
-            <p>Welcome to height page</p>
-        </>
-    );
-};
+  return (
+    <article>
+      <BananaMeasure />
+    </article>
+  );
+}
