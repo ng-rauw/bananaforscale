@@ -1,4 +1,4 @@
-import BananaMeasure from "@/app/height/components/BananaMeasure";
+import BananaMeasure from "@/app/[locale]/height/components/BananaMeasure";
 
 export default function Height() {
   return (
