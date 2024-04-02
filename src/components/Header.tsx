@@ -14,19 +14,19 @@ export default function Header() {
         </span>
         <h1 className="flex h-8 items-center text-xl">Banana for scale</h1>
       </Link>
-      <HeaderLink url="/height" active={currentPath === "/height"}>
+      <HeaderLink url="/height" active={currentPath.includes("/height")}>
         <span>Height</span>
       </HeaderLink>
-      <HeaderLink url="/weight" active={currentPath === "/weight"}>
+      <HeaderLink url="/weight" active={currentPath.includes("/weight")}>
         <span>Weight</span>
       </HeaderLink>
-      <HeaderLink url="/distance" active={currentPath === "/distance"}>
+      <HeaderLink url="/distance" active={currentPath.includes("/distance")}>
         <span>Distance</span>
       </HeaderLink>
-      <HeaderLink url="/time" active={currentPath === "/time"}>
+      <HeaderLink url="/time" active={currentPath.includes("/time")}>
         <span>Time</span>
       </HeaderLink>
-      <HeaderLink url="/currency" active={currentPath === "/currency"}>
+      <HeaderLink url="/currency" active={currentPath.includes("/currency")}>
         <span>Currency</span>
       </HeaderLink>
     </nav>
