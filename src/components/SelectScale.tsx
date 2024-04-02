@@ -11,7 +11,9 @@ const SelectScale = ({ handleScaleChange, options }: Props) => {
       className="cursor-pointer appearance-none bg-white p-2 text-center text-5xl outline-0"
     >
       {options.map((option) => (
-        <option value={option.value}>{option.label}</option>
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
       ))}
     </select>
   );
