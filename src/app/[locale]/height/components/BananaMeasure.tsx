@@ -2,9 +2,13 @@
 import { useState, ReactElement, ChangeEvent } from "react";
 import BananaScaleIcon from "@/components/icons/BananaScale";
 import BananaIcon from "@/components/icons/Banana";
+import InputWide from "@/components/InputWide";
+import DisplayUnits from "@/components/DisplayUnits";
+import SelectScale, { OptionScaleModel } from "@/components/SelectScale";
 
 export default function BananaMeasure() {
   const BANANA_HEIGHT = 20.5;
+  const MAXIMUM_BANANAS = 15;
   const [bananaText, setBananaText] = useState("");
   const [banana, setBanana] = useState(0);
   const [scale, setScale] = useState(1);
@@ -20,9 +24,17 @@ export default function BananaMeasure() {
     setScale(Number(e.target.value));
     generateBananas(banana * scale);
   };
+  const options: OptionScaleModel[] = [
+    { value: 1, label: "cm" },
+    { value: 100, label: "m" },
+    {
+      value: 100000,
+      label: "km",
+    },
+  ];
   const generateBananas = (n: number) => {
     const divArray: ReactElement[] = [];
-    if (n > 15) {
+    if (n > MAXIMUM_BANANAS) {
       setBananas(divArray);
       return;
     }
@@ -52,53 +64,22 @@ export default function BananaMeasure() {
   };
   return (
     <section
-      className={`flex w-full  ${banana * scale > 15 ? "justify-items-start" : "justify-between"}  p-8`}
+      className={`flex w-full  ${banana * scale > MAXIMUM_BANANAS ? "justify-items-start" : "justify-between"}  p-8`}
     >
-      <form
-        action={() => {}}
-        className="flex w-1/2 items-center rounded-3xl bg-white p-8 text-gray-600"
-      >
-        <input
-          type="number"
-          placeholder="0"
-          min="0"
-          value={bananaText}
-          className="w-full text-center text-9xl outline-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0"
-          onChange={handleBananaChange}
-          onInputCapture={handleBananaChange}
-        />
-        <select
-          onChange={handleScaleChange}
-          className="cursor-pointer appearance-none bg-white p-2 text-center text-5xl outline-0"
-        >
-          <option value={1}>cm</option>
-          <option value={100}>m</option>
-          <option value={100000}>km</option>
-        </select>
-      </form>
+      <InputWide inputText={bananaText} handleInputChange={handleBananaChange}>
+        <SelectScale
+          handleScaleChange={handleScaleChange}
+          options={options}
+        ></SelectScale>
+      </InputWide>
       {banana > 0 ? (
-        <div className="flex items-center">
-          <p
-            className={`flex items-center text-center ${banana * scale > 15 ? "pl-8 text-9xl" : "text-6xl"}`}
-          >
-            {Intl.NumberFormat("es-ES").format(
-              Math.round(banana * 100 * scale) / 100,
-            )}
-            <span className={`${banana * scale > 15 ? "w-44" : "w-32"}`}>
-              <BananaIcon />
-            </span>
-          </p>
-          {banana * scale < 15 ? (
-            <div
-              className={`flex flex-col-reverse items-center overflow-hidden`}
-              style={{ width: 400, height: 200 }}
-            >
-              {bananas.map((d) => d)}
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
+        <DisplayUnits
+          amount={banana}
+          scale={scale}
+          items={bananas}
+          maxAmount={MAXIMUM_BANANAS}
+          icon={<BananaIcon />}
+        ></DisplayUnits>
       ) : (
         <></>
       )}
