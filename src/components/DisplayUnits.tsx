@@ -37,9 +37,7 @@ const DisplayUnits = ({
         >
           {items.map((d) => d)}
         </div>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </div>
   );
 };

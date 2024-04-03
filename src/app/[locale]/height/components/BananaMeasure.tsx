@@ -1,5 +1,5 @@
 "use client";
-import { useState, ReactElement, ChangeEvent } from "react";
+import { useState, ReactElement, ChangeEvent, useEffect } from "react";
 import BananaScaleIcon from "@/components/icons/BananaScale";
 import BananaIcon from "@/components/icons/Banana";
 import InputWide from "@/components/InputWide";
@@ -13,16 +13,19 @@ export default function BananaMeasure() {
   const [banana, setBanana] = useState(0);
   const [scale, setScale] = useState(1);
   const [bananas, setBananas] = useState<ReactElement[]>([]);
+
+  useEffect(() => {
+    generateBananas(banana * scale);
+  }, [banana, scale]);
+
   const handleBananaChange = (e: ChangeEvent<HTMLInputElement>) => {
     setBananaText(e.target.value);
     setBanana(Number(e.target.value) / BANANA_HEIGHT);
-    generateBananas(banana * scale);
   };
   const handleScaleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setBananaText("");
     setBanana(0);
     setScale(Number(e.target.value));
-    generateBananas(banana * scale);
   };
   const options: OptionScaleModel[] = [
     { value: 1, label: "cm" },
@@ -60,8 +63,10 @@ export default function BananaMeasure() {
         </div>,
       );
     }
+
     setBananas(divArray);
   };
+
   return (
     <section
       className={`flex w-full  ${banana * scale > MAXIMUM_BANANAS ? "justify-items-start" : "justify-between"}  p-8`}
@@ -80,9 +85,7 @@ export default function BananaMeasure() {
           maxAmount={MAXIMUM_BANANAS}
           icon={<BananaIcon />}
         ></DisplayUnits>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </section>
   );
 }

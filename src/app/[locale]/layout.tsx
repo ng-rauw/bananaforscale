@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { NextIntlClientProvider } from "next-intl";
-
+import "./globals.css";
 export const metadata: Metadata = {
   title: "Banana for scale",
   description: "Measure with bananas and other random scales",

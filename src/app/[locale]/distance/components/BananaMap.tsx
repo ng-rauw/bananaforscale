@@ -1,10 +1,24 @@
 "use client";
-import BananaIcon from "@/components/icons/Banana";
-import InputWide from "@/components/InputWide";
-import DisplayUnits from "@/components/DisplayUnits";
-import SelectScale, { OptionScaleModel } from "@/components/SelectScale";
+
+import { useMemo } from "react";
+import dynamic from "next/dynamic";
+import { LatLngTuple } from "leaflet";
 
 export default function BananaMap() {
   const BANANA_HEIGHT = 20.5;
-  return <section></section>;
+  const position: LatLngTuple = [40.41, -3.7];
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("@/components/Map"), {
+        loading: () => <p>A map is loading</p>,
+        ssr: false,
+      }),
+    [],
+  );
+
+  return (
+    <div className={"h-screen w-full"}>
+      <Map zoom={12} position={position} />
+    </div>
+  );
 }
