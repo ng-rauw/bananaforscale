@@ -18,21 +18,27 @@ export default function Header({ locale }: { locale: string }) {
         <h1 className="flex h-8 items-center text-xl">Banana for scale</h1>
       </Link>
       <HeaderLink
-        url={`${locale}/height`}
+        url={`/${locale}/height`}
         active={currentPath.includes("/height")}
       >
         <span>{t("height")}</span>
       </HeaderLink>
-      <HeaderLink url="/weight" active={currentPath.includes("/weight")}>
+      <HeaderLink
+        url={`/${locale}/weight`}
+        active={currentPath.includes("/weight")}
+      >
         <span>{t("weight")}</span>
       </HeaderLink>
       <HeaderLink
-        url={`${locale}/distance`}
+        url={`/${locale}/distance`}
         active={currentPath.includes("/distance")}
       >
         <span>{t("distance")}</span>
       </HeaderLink>
-      <HeaderLink url={`${locale}/time`} active={currentPath.includes("/time")}>
+      <HeaderLink
+        url={`/${locale}/time`}
+        active={currentPath.includes("/time")}
+      >
         <span>{t("time")}</span>
       </HeaderLink>
       <HeaderLink
