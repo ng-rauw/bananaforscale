@@ -1,32 +1,21 @@
 "use client";
-import { useState, ReactElement, ChangeEvent, useEffect } from "react";
 import BananaScaleIcon from "@/components/icons/BananaScale";
-import BananaIcon from "@/components/icons/Banana";
+import SelectScale, { OptionScaleModel } from "@/components/SelectScale";
+import { useItemMeasure } from "@/app/[locale]/height/hooks/UseItemMeasure";
 import InputWide from "@/components/InputWide";
 import DisplayUnits from "@/components/DisplayUnits";
-import SelectScale, { OptionScaleModel } from "@/components/SelectScale";
+import BananaIcon from "@/components/icons/Banana";
 
 export default function BananaMeasure() {
   const BANANA_HEIGHT = 20.5;
   const MAXIMUM_BANANAS = 15;
-  const [bananaText, setBananaText] = useState("");
-  const [banana, setBanana] = useState(0);
-  const [scale, setScale] = useState(1);
-  const [bananas, setBananas] = useState<ReactElement[]>([]);
-
-  useEffect(() => {
-    generateBananas(banana * scale);
-  }, [banana, scale]);
-
-  const handleBananaChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBananaText(e.target.value);
-    setBanana(Number(e.target.value) / BANANA_HEIGHT);
-  };
-  const handleScaleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setBananaText("");
-    setBanana(0);
-    setScale(Number(e.target.value));
-  };
+  const icon = <BananaScaleIcon></BananaScaleIcon>;
+  const { itemText, item, scale, items, handleItemChange, handleScaleChange } =
+    useItemMeasure({
+      itemHeight: BANANA_HEIGHT,
+      maximumItems: MAXIMUM_BANANAS,
+      icon,
+    });
   const options: OptionScaleModel[] = [
     { value: 1, label: "cm" },
     { value: 100, label: "m" },
@@ -35,53 +24,22 @@ export default function BananaMeasure() {
       label: "km",
     },
   ];
-  const generateBananas = (n: number) => {
-    const divArray: ReactElement[] = [];
-    if (n > MAXIMUM_BANANAS) {
-      setBananas(divArray);
-      return;
-    }
-    for (let i = 0; i < n; i++) {
-      // Percentage that each banana occupies of the total height
-      const width = Math.floor(200 / n);
-
-      // If the width is greater than the size available, move it so only the right percentage of banana is showing
-      const top =
-        width > 200 ? 200 - (Math.round(banana * 100 * scale) / 100) * 200 : 0;
-
-      divArray.push(
-        <div
-          key={i}
-          className={`relative flex`}
-          style={{
-            top: -top,
-            width: width < 400 ? width : 400,
-            height: width < 400 ? width : 400,
-          }}
-        >
-          <BananaScaleIcon></BananaScaleIcon>
-        </div>,
-      );
-    }
-
-    setBananas(divArray);
-  };
 
   return (
     <section
-      className={`flex w-full  ${banana * scale > MAXIMUM_BANANAS ? "justify-items-start" : "justify-between"}  p-8`}
+      className={`flex w-full  ${item * scale > MAXIMUM_BANANAS ? "justify-items-start" : "justify-between"}  p-8`}
     >
-      <InputWide inputText={bananaText} handleInputChange={handleBananaChange}>
+      <InputWide inputText={itemText} handleInputChange={handleItemChange}>
         <SelectScale
           handleScaleChange={handleScaleChange}
           options={options}
         ></SelectScale>
       </InputWide>
-      {banana > 0 ? (
+      {item > 0 ? (
         <DisplayUnits
-          amount={banana}
+          amount={item}
           scale={scale}
-          items={bananas}
+          items={items}
           maxAmount={MAXIMUM_BANANAS}
           icon={<BananaIcon />}
         ></DisplayUnits>
