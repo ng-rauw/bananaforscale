@@ -4,15 +4,16 @@ import { useItemMeasure } from "@/app/[locale]/height/hooks/UseItemMeasure";
 import FormWide, { OptionScaleModel } from "@/components/FormWide";
 import DisplayUnits from "@/components/DisplayUnits";
 import BananaIcon from "@/components/icons/Banana";
+import FuetIcon from "@/components/icons/FuetIcon";
 
-export default function BananaMeasure() {
-  const BANANA_HEIGHT = 20.5;
-  const MAXIMUM_BANANAS = 15;
-  const icon = <BananaScaleIcon></BananaScaleIcon>;
+export default function FuetMeasure() {
+  const FUET_HEIGHT = 38;
+  const MAXIMUM_FUETS = 15;
+  const icon = <FuetIcon></FuetIcon>;
   const { itemText, item, scale, items, handleItemChange, handleScaleChange } =
     useItemMeasure({
-      itemHeight: BANANA_HEIGHT,
-      maximumItems: MAXIMUM_BANANAS,
+      itemHeight: FUET_HEIGHT,
+      maximumItems: MAXIMUM_FUETS,
       icon,
     });
   const options: OptionScaleModel[] = [
@@ -26,7 +27,7 @@ export default function BananaMeasure() {
 
   return (
     <section
-      className={`flex w-full  ${item * scale > MAXIMUM_BANANAS ? "justify-items-start" : "justify-between"}  p-8`}
+      className={`flex w-full  ${item * scale > MAXIMUM_FUETS ? "justify-items-start" : "justify-between"}  p-8`}
     >
       <FormWide
         inputText={itemText}
@@ -40,8 +41,8 @@ export default function BananaMeasure() {
           amount={item}
           scale={scale}
           items={items}
-          maxAmount={MAXIMUM_BANANAS}
-          icon={<BananaIcon />}
+          maxAmount={MAXIMUM_FUETS}
+          icon={<FuetIcon />}
         ></DisplayUnits>
       ) : null}
     </section>

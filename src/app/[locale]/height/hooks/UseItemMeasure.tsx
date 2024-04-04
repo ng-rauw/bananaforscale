@@ -5,6 +5,7 @@ type Props = {
   maximumItems: number;
   icon: ReactElement;
 };
+
 export function useItemMeasure({ itemHeight, maximumItems, icon }: Props) {
   const [itemText, setItemText] = useState("");
   const [item, setItem] = useState(0);
@@ -15,15 +16,15 @@ export function useItemMeasure({ itemHeight, maximumItems, icon }: Props) {
     generateItems(item * scale);
   }, [item, scale]);
 
-  const handleItemChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setItemText(e.target.value);
-    setItem(Number(e.target.value) / itemHeight);
+  const handleItemChange = (data: number) => {
+    setItemText(data.toString());
+    setItem(data / itemHeight);
   };
 
-  const handleScaleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleScaleChange = (data: number) => {
     setItemText("");
     setItem(0);
-    setScale(Number(e.target.value));
+    setScale(data);
   };
 
   const generateItems = (n: number) => {
