@@ -1,9 +1,7 @@
 "use client";
-import BananaScaleIcon from "@/components/icons/BananaScale";
 import { useItemMeasure } from "@/app/[locale]/height/hooks/UseItemMeasure";
 import FormWide, { OptionScaleModel } from "@/components/FormWide";
 import DisplayUnits from "@/components/DisplayUnits";
-import BananaIcon from "@/components/icons/Banana";
 import FuetIcon from "@/components/icons/FuetIcon";
 
 export default function FuetMeasure() {
@@ -44,7 +42,11 @@ export default function FuetMeasure() {
           maxAmount={MAXIMUM_FUETS}
           icon={<FuetIcon />}
         ></DisplayUnits>
-      ) : null}
+      ) : (
+        <div className={"mr-auto flex w-44 items-center"}>
+          <FuetIcon />
+        </div>
+      )}
     </section>
   );
 }

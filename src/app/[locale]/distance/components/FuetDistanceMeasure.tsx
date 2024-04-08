@@ -26,7 +26,11 @@ const FuetDistanceMeasure = ({ distance }: Props) => {
           maxAmount={15}
           icon={<FuetIcon />}
         ></DisplayUnits>
-      ) : null}
+      ) : (
+        <div className={"mr-auto flex w-44 items-center"}>
+          <FuetIcon />
+        </div>
+      )}
     </>
   );
 };

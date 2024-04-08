@@ -43,7 +43,11 @@ export default function BananaMeasure() {
           maxAmount={MAXIMUM_BANANAS}
           icon={<BananaIcon />}
         ></DisplayUnits>
-      ) : null}
+      ) : (
+        <div className={"mr-auto flex w-44 items-center"}>
+          <BananaIcon />
+        </div>
+      )}
     </section>
   );
 }

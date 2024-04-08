@@ -27,7 +27,11 @@ const BananaDistanceMeasure = ({ distance }: Props) => {
           maxAmount={15}
           icon={<BananaIcon />}
         ></DisplayUnits>
-      ) : null}
+      ) : (
+        <div className={"mr-auto flex w-44 items-center"}>
+          <BananaIcon />
+        </div>
+      )}
     </>
   );
 };
