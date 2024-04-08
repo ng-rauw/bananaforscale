@@ -4,14 +4,14 @@ import { useItemMeasure } from "@/app/[locale]/height/hooks/UseItemMeasure";
 import FormWide, { OptionScaleModel } from "@/components/FormWide";
 import DisplayUnits from "@/components/DisplayUnits";
 import BananaIcon from "@/components/icons/Banana";
+import { Measures } from "@/settings/measures";
 
 export default function BananaMeasure() {
-  const BANANA_HEIGHT = 20.5;
   const MAXIMUM_BANANAS = 15;
   const icon = <BananaScaleIcon></BananaScaleIcon>;
   const { itemText, item, scale, items, handleItemChange, handleScaleChange } =
     useItemMeasure({
-      itemHeight: BANANA_HEIGHT,
+      itemHeight: Measures.BANANA,
       maximumItems: MAXIMUM_BANANAS,
       icon,
     });

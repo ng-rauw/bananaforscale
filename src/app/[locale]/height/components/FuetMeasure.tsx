@@ -3,14 +3,14 @@ import { useItemMeasure } from "@/app/[locale]/height/hooks/UseItemMeasure";
 import FormWide, { OptionScaleModel } from "@/components/FormWide";
 import DisplayUnits from "@/components/DisplayUnits";
 import FuetIcon from "@/components/icons/FuetIcon";
+import { Measures } from "@/settings/measures";
 
 export default function FuetMeasure() {
-  const FUET_HEIGHT = 38;
   const MAXIMUM_FUETS = 15;
   const icon = <FuetIcon></FuetIcon>;
   const { itemText, item, scale, items, handleItemChange, handleScaleChange } =
     useItemMeasure({
-      itemHeight: FUET_HEIGHT,
+      itemHeight: Measures.FUET,
       maximumItems: MAXIMUM_FUETS,
       icon,
     });
