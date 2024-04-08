@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Textfit } from "react-textfit";
 type Props = {
   amount: number;
   scale: number;
@@ -8,6 +8,7 @@ type Props = {
   height?: number;
   width?: number;
   maxAmount?: number;
+  className?: string;
 };
 const DisplayUnits = ({
   amount,
@@ -17,19 +18,25 @@ const DisplayUnits = ({
   width = 400,
   height = 200,
   maxAmount = 15,
+  className,
 }: Props) => {
   return (
-    <div className="flex items-center">
-      <p
-        className={`flex items-center text-center ${amount * scale > maxAmount ? "pl-8 text-9xl" : "text-6xl"}`}
+    <div
+      className={`grid px-2 ${className} ${amount * scale > maxAmount ? "grid-flow-col-dense" : "grid-flow-col-dense"} items-center`}
+    >
+      <Textfit
+        className={`grid h-full w-auto items-center text-9xl`}
+        mode="multi"
       >
-        {Intl.NumberFormat("es-ES").format(
-          Math.round(amount * 100 * scale) / 100,
-        )}
-        <span className={`${amount * scale > maxAmount ? "w-44" : "w-32"}`}>
-          {icon}
-        </span>
-      </p>
+        {amount * scale > 9999999
+          ? amount.toExponential(4)
+          : Intl.NumberFormat("es-ES").format(
+              Math.round(amount * 100 * scale) / 100,
+            )}
+      </Textfit>
+      <span className={`grid ${amount * scale > maxAmount ? "w-44" : "w-32"}`}>
+        {icon}
+      </span>
       {amount * scale < maxAmount ? (
         <div
           className={`flex flex-col-reverse items-center overflow-hidden`}

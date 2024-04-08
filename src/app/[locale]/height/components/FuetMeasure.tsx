@@ -36,6 +36,7 @@ export default function FuetMeasure() {
       ></FormWide>
       {item > 0 ? (
         <DisplayUnits
+          className={"max-w-[50%]"}
           amount={item}
           scale={scale}
           items={items}

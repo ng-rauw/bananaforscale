@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-textfit": "^1.1.4",
     "bun-types": "^1.1.0",
     "formik": "^2.4.5",
     "leaflet": "^1.9.4",
@@ -18,7 +19,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-leaflet": "^4.2.1",
-    "react-leaflet-textpath": "^2.1.1"
+    "react-leaflet-textpath": "^2.1.1",
+    "react-textfit": "^1.1.1"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.8",
