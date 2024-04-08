@@ -26,7 +26,9 @@ export default async function RootLayout({
       <body className="flex h-screen flex-col">
         <NextIntlClientProvider locale={locale} messages={translations}>
           <Header locale={locale}></Header>
-          <main className="flex-1 bg-blue-500">{children}</main>
+          <main className="flex-1 overflow-x-auto overflow-y-scroll bg-blue-500">
+            {children}
+          </main>
           <Footer></Footer>
         </NextIntlClientProvider>
       </body>

@@ -10,7 +10,7 @@ export default function Header({ locale }: { locale: string }) {
   const t = useTranslations("Index");
 
   return (
-    <nav className="flex w-full gap-2 bg-yellow-400 p-4 text-black">
+    <nav className="sticky top-0 z-40 flex w-full gap-2 bg-yellow-400 p-4 text-black">
       <Link href={`/`} className="mr-auto flex flex-row items-center">
         <span className="h-12 w-12">
           <BananaIcon />
