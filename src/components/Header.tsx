@@ -42,7 +42,7 @@ export default function Header({ locale }: { locale: string }) {
         <span>{t("time")}</span>
       </HeaderLink>
       <HeaderLink
-        url={`${locale}/currency`}
+        url={`/${locale}/currency`}
         active={currentPath.includes("/currency")}
       >
         <span>{t("currency")}</span>
