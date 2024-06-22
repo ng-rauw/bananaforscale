@@ -2,15 +2,16 @@ import React, { useEffect } from "react";
 import DisplayUnits from "@/components/DisplayUnits";
 import { useItemMeasure } from "@/app/[locale]/height/hooks/UseItemMeasure";
 import { Measures } from "@/settings/measures";
-import FuetIcon from "@/components/icons/FuetIcon";
+import BicIcon from "@/components/icons/Bic";
+import BicScaleIcon from "@/components/icons/BicScale";
 
 type Props = {
   distance: number;
 };
-const FuetDistanceMeasure = ({ distance }: Props) => {
+const BicDistanceMeasure = ({ distance }: Props) => {
   const { item, scale, items, handleItemChange } = useItemMeasure({
-    itemHeight: Measures.FUET,
-    icon: <FuetIcon></FuetIcon>,
+    itemHeight: Measures.BIC,
+    icon: <BicScaleIcon></BicScaleIcon>,
   });
   useEffect(() => {
     handleItemChange(distance);
@@ -22,16 +23,16 @@ const FuetDistanceMeasure = ({ distance }: Props) => {
           amount={item}
           scale={scale}
           items={items}
-          maxAmount={15}
-          icon={<FuetIcon />}
+          maxAmount={3.1}
+          icon={<BicIcon />}
         ></DisplayUnits>
       ) : (
         <div className={"mr-auto flex w-44 items-center"}>
-          <FuetIcon />
+          <BicIcon />
         </div>
       )}
     </>
   );
 };
 
-export default FuetDistanceMeasure;
+export default BicDistanceMeasure;

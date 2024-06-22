@@ -4,6 +4,7 @@
     "weight": "Weight",
     "distance": "Distance",
     "time": "Time",
-    "currency": "Currency"
+    "currency": "Currency",
+    "change_mode": "Change mode"
   }
 }

@@ -1,12 +1,11 @@
-import { useState, ReactElement, ChangeEvent, useEffect } from "react";
+import { useState, ReactElement, useEffect } from "react";
 
 type Props = {
   itemHeight: number;
-  maximumItems: number;
   icon: ReactElement;
 };
 
-export function useItemMeasure({ itemHeight, maximumItems, icon }: Props) {
+export function useItemMeasure({ itemHeight, icon }: Props) {
   const [itemText, setItemText] = useState("");
   const [item, setItem] = useState(0);
   const [scale, setScale] = useState(1);

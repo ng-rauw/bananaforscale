@@ -11,6 +11,7 @@ type Props = {
   handleInputChange: (value: number) => void;
   handleScaleChange: (value: number) => void;
   options: OptionScaleModel[];
+  className?: string;
 };
 
 const FormWide = ({
@@ -19,13 +20,16 @@ const FormWide = ({
   handleScaleChange,
   options,
   scale,
+  className,
 }: Props) => {
   return (
     <Formik
       initialValues={{ inputText: inputText, scale: 1 }}
       onSubmit={() => {}}
     >
-      <Form className="flex w-1/2 items-center rounded-3xl bg-white p-8 text-gray-600">
+      <Form
+        className={`${className} flex items-center rounded-3xl bg-white p-8 text-gray-600`}
+      >
         <Field
           type="number"
           name="inputText"

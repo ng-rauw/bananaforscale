@@ -4,6 +4,7 @@
     "weight": "Peso",
     "distance": "Distancia",
     "time": "Tiempo",
-    "currency": "Divisa"
+    "currency": "Divisa",
+    "change_mode": "Cambiar modo"
   }
 }

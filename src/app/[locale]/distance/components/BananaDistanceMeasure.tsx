@@ -11,7 +11,6 @@ type Props = {
 const BananaDistanceMeasure = ({ distance }: Props) => {
   const { item, scale, items, handleItemChange } = useItemMeasure({
     itemHeight: Measures.BANANA,
-    maximumItems: 15,
     icon: <BananaScaleIcon></BananaScaleIcon>,
   });
   useEffect(() => {

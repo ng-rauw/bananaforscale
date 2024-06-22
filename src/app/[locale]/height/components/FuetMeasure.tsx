@@ -4,14 +4,16 @@ import FormWide, { OptionScaleModel } from "@/components/FormWide";
 import DisplayUnits from "@/components/DisplayUnits";
 import FuetIcon from "@/components/icons/FuetIcon";
 import { Measures } from "@/settings/measures";
+import useGlobalHeightContext from "@/app/[locale]/height/heightContext";
+import BananaIcon from "@/components/icons/Banana";
 
 export default function FuetMeasure() {
   const MAXIMUM_FUETS = 15;
   const icon = <FuetIcon></FuetIcon>;
+
   const { itemText, item, scale, items, handleItemChange, handleScaleChange } =
     useItemMeasure({
       itemHeight: Measures.FUET,
-      maximumItems: MAXIMUM_FUETS,
       icon,
     });
   const options: OptionScaleModel[] = [
@@ -22,31 +24,46 @@ export default function FuetMeasure() {
       label: "km",
     },
   ];
+  const { isGlobalMode, globalScale, globalItem } = useGlobalHeightContext();
 
   return (
     <section
       className={`flex w-full  ${item * scale > MAXIMUM_FUETS ? "justify-items-start" : "justify-between"}  p-8`}
     >
-      <FormWide
-        inputText={itemText}
-        handleInputChange={handleItemChange}
-        handleScaleChange={handleScaleChange}
-        options={options}
-        scale={scale}
-      ></FormWide>
-      {item > 0 ? (
+      {isGlobalMode ? (
         <DisplayUnits
           className={"max-w-[50%]"}
-          amount={item}
-          scale={scale}
+          amount={globalItem / Measures.FUET}
+          scale={globalScale}
           items={items}
-          maxAmount={MAXIMUM_FUETS}
+          maxAmount={0}
           icon={<FuetIcon />}
         ></DisplayUnits>
       ) : (
-        <div className={"mr-auto flex w-44 items-center"}>
-          <FuetIcon />
-        </div>
+        <>
+          <FormWide
+            inputText={itemText}
+            handleInputChange={handleItemChange}
+            handleScaleChange={handleScaleChange}
+            options={options}
+            scale={scale}
+            className={"w-1/2"}
+          ></FormWide>
+          {item > 0 ? (
+            <DisplayUnits
+              className={"max-w-[50%]"}
+              amount={item}
+              scale={scale}
+              items={items}
+              maxAmount={MAXIMUM_FUETS}
+              icon={<FuetIcon />}
+            ></DisplayUnits>
+          ) : (
+            <div className={"mr-auto flex w-44 items-center"}>
+              <FuetIcon />
+            </div>
+          )}
+        </>
       )}
     </section>
   );

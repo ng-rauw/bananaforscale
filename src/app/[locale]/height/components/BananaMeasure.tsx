@@ -5,6 +5,7 @@ import FormWide, { OptionScaleModel } from "@/components/FormWide";
 import DisplayUnits from "@/components/DisplayUnits";
 import BananaIcon from "@/components/icons/Banana";
 import { Measures } from "@/settings/measures";
+import useGlobalHeightContext from "@/app/[locale]/height/heightContext";
 
 export default function BananaMeasure() {
   const MAXIMUM_BANANAS = 15;
@@ -12,7 +13,6 @@ export default function BananaMeasure() {
   const { itemText, item, scale, items, handleItemChange, handleScaleChange } =
     useItemMeasure({
       itemHeight: Measures.BANANA,
-      maximumItems: MAXIMUM_BANANAS,
       icon,
     });
   const options: OptionScaleModel[] = [
@@ -23,31 +23,46 @@ export default function BananaMeasure() {
       label: "km",
     },
   ];
+  const { isGlobalMode, globalScale, globalItem } = useGlobalHeightContext();
 
   return (
     <section
       className={`flex w-full  ${item * scale > MAXIMUM_BANANAS ? "justify-items-start" : "justify-between"}  p-8`}
     >
-      <FormWide
-        inputText={itemText}
-        handleInputChange={handleItemChange}
-        handleScaleChange={handleScaleChange}
-        options={options}
-        scale={scale}
-      ></FormWide>
-      {item > 0 ? (
+      {isGlobalMode ? (
         <DisplayUnits
           className={"max-w-[50%]"}
-          amount={item}
-          scale={scale}
+          amount={globalItem / Measures.BANANA}
+          scale={globalScale}
           items={items}
-          maxAmount={MAXIMUM_BANANAS}
+          maxAmount={0}
           icon={<BananaIcon />}
         ></DisplayUnits>
       ) : (
-        <div className={"mr-auto flex w-44 items-center"}>
-          <BananaIcon />
-        </div>
+        <>
+          <FormWide
+            inputText={itemText}
+            handleInputChange={handleItemChange}
+            handleScaleChange={handleScaleChange}
+            options={options}
+            scale={scale}
+            className={"w-1/2"}
+          ></FormWide>
+          {item > 0 ? (
+            <DisplayUnits
+              className={"max-w-[50%]"}
+              amount={item}
+              scale={scale}
+              items={items}
+              maxAmount={MAXIMUM_BANANAS}
+              icon={<BananaIcon />}
+            ></DisplayUnits>
+          ) : (
+            <div className={"mr-auto flex w-44 items-center"}>
+              <BananaIcon />
+            </div>
+          )}
+        </>
       )}
     </section>
   );

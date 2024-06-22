@@ -12,7 +12,6 @@ export default function BananaCurrencyMeasure() {
   const { itemText, item, scale, items, handleItemChange, handleScaleChange } =
     useItemMeasure({
       itemHeight: Measures.BANANA,
-      maximumItems: MAXIMUM_BANANAS,
       icon,
     });
   const options: OptionScaleModel[] = [{ value: 1, label: "€" }];
