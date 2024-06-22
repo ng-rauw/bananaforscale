@@ -1,4 +1,4 @@
-import { useState, ReactElement, ChangeEvent, useEffect } from "react";
+import { useState, ReactElement, useEffect } from "react";
 
 type Props = {
   itemHeight: number;

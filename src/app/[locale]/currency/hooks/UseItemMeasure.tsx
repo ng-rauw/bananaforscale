@@ -1,4 +1,4 @@
-import { useState, ReactElement, ChangeEvent, useEffect } from "react";
+import { useState, ReactElement, useEffect } from "react";
 
 type Props = {
   itemHeight: number;
@@ -6,11 +6,7 @@ type Props = {
   icon: ReactElement;
 };
 
-export function useItemWeightLayoutMeasure({
-  itemHeight,
-  maximumItems,
-  icon,
-}: Props) {
+export function useItemWeightLayoutMeasure({ itemHeight, icon }: Props) {
   const [itemText, setItemText] = useState("");
   const [item, setItem] = useState(0);
   const [scale, setScale] = useState(1);

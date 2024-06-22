@@ -5,7 +5,6 @@ import DisplayUnits from "@/components/DisplayUnits";
 import FuetIcon from "@/components/icons/FuetIcon";
 import { Measures } from "@/settings/measures";
 import useGlobalHeightContext from "@/app/[locale]/height/heightContext";
-import BananaIcon from "@/components/icons/Banana";
 
 export default function FuetMeasure() {
   const MAXIMUM_FUETS = 15;

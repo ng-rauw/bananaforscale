@@ -13,7 +13,9 @@ type Props = {
 };
 export default function DistanceMap({ Markers }: Props) {
   const position: L.LatLngTuple = [40.41, -3.7]; //Madrid
-
+  const styleCross = {
+    cursor: "crosshair",
+  };
   return (
     <div className={"relative z-10 flex h-full w-full"}>
       <Suspense>
@@ -22,6 +24,7 @@ export default function DistanceMap({ Markers }: Props) {
           center={position}
           zoom={14}
           scrollWheelZoom={false}
+          style={styleCross}
         >
           <Markers></Markers>
           <TileLayer
